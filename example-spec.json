@@ -1,0 +1,31 @@
+{
+  "title": "My Custom Quote App",
+  "buttonText": "Get Inspirational Quotes",
+  "newEndpoint": {
+    "path": "status",
+    "name": "get_status",
+    "message": "The system is operational"
+  },
+  "newQuotes": [
+    {
+      "text": "The best way to predict the future is to invent it.",
+      "author": "Alan Kay"
+    },
+    {
+      "text": "Innovation distinguishes between a leader and a follower.",
+      "author": "Steve Jobs"
+    }
+  ],
+  "db": {
+    "image": "postgres:15-alpine",
+    "port": 5432
+  },
+  "api": {
+    "image": "python:3.11-slim",
+    "port": 5000
+  },
+  "frontend": {
+    "image": "node:20-alpine",
+    "port": 3000
+  }
+}

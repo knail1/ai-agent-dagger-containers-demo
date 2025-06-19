@@ -1,0 +1,19 @@
+{
+  "db": {
+    "image": "postgres:15-alpine",
+    "env": {
+      "POSTGRES_PASSWORD": "postgres",
+      "POSTGRES_USER": "postgres",
+      "POSTGRES_DB": "postgres"
+    },
+    "port": 5432
+  },
+  "api": {
+    "image": "python:3.11-slim",
+    "port": 5000
+  },
+  "frontend": {
+    "image": "node:20-alpine",
+    "port": 3000
+  }
+}
