@@ -13,6 +13,8 @@ The architecture consists of:
 
 OpenHands AI uses Dagger.io to build, deploy, and orchestrate these containers, creating a seamless end-to-end application.
 
+For a detailed architecture diagram and explanation, see [Architecture Overview](docs/architecture.md).
+
 ## 🚀 Quick Start
 
 ### Option 1: Run with OpenHands AI Container (Recommended)
@@ -52,7 +54,20 @@ docker-compose logs -f
 
 ## 🔧 Customizing Your Application
 
-You can customize the application by creating a specification file and using the OpenHands AI customization tool:
+You can customize the application using the interactive specification generator:
+
+```bash
+# Run the interactive specification generator
+python create-spec.py
+
+# Run the customization tool with your generated specification
+python agent/customize.py --spec my-spec.json
+
+# Deploy your customized application
+./run-openhands.sh
+```
+
+Alternatively, you can manually create a specification file:
 
 ```bash
 # Create your specification file (use example-spec.json as a template)
@@ -110,8 +125,12 @@ ai-agent-dagger-containers-demo/
 │   └── Dockerfile          # Docker image for API
 ├── db/                     # PostgreSQL database
 │   └── init.sql            # Database initialization script
+├── docs/                   # Documentation
+│   ├── architecture.md     # Architecture diagram and explanation
+│   └── gpt-4.5-research.md # Research notes
 ├── docker-compose.yml      # Docker Compose configuration
 ├── run-openhands.sh        # Script to run OpenHands AI container
+├── create-spec.py          # Interactive specification generator
 ├── example-spec.json       # Example specification file
 └── README.md               # Documentation
 ```
