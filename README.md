@@ -236,18 +236,3 @@ DOCKER_NETWORK=app-network
 ```
 
 See `.env.example` for a template.
-
-## 🧹 Cleanup
-
-When you're done with the application, you can clean up all resources:
-
-```bash
-# Stop and remove all containers
-docker-compose down
-
-# Remove the Docker network
-docker network rm app-network
-
-# Remove any dangling volumes
-docker volume prune -f
-```
