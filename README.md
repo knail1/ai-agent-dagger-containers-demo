@@ -35,7 +35,7 @@ cd ai-agent-dagger-containers-demo
 chmod +x execute.py
 
 # Run the orchestration script
-./execute.py
+python execute.py
 ```
 
 This will:
@@ -92,7 +92,7 @@ nano my-spec.json
 python agent/customize.py --spec my-spec.json
 
 # Deploy your customized application
-./execute.py
+python execute.py
 ```
 
 ## 🔄 Interaction Flow
@@ -236,3 +236,18 @@ DOCKER_NETWORK=app-network
 ```
 
 See `.env.example` for a template.
+
+## 🧹 Cleanup
+
+When you're done with the application, you can clean up all resources:
+
+```bash
+# Stop and remove all containers
+docker-compose down
+
+# Remove the Docker network
+docker network rm app-network
+
+# Remove any dangling volumes
+docker volume prune -f
+```
