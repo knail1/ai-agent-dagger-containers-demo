@@ -1,5 +1,9 @@
 version: '3.8'
 
+networks:
+  app-network:
+    driver: bridge
+
 services:
   db:
     image: postgres:15-alpine
@@ -9,8 +13,11 @@ services:
       POSTGRES_DB: postgres
     volumes:
       - ./db:/docker-entrypoint-initdb.d
+      - postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+    networks:
+      - app-network
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s
@@ -24,18 +31,26 @@ services:
     environment:
       FLASK_APP: app.py
       FLASK_ENV: development
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/postgres
     depends_on:
       db:
         condition: service_healthy
     volumes:
       - ./api:/app
+    networks:
+      - app-network
 
   frontend:
     build: ./frontend
     ports:
-      - "3000:3000"
+      - "3001:3000"  # Changed from 3000:3000
     depends_on:
       - api
     volumes:
       - ./frontend:/app
       - /app/node_modules
+    networks:
+      - app-network
+
+volumes:
+  postgres_data:
